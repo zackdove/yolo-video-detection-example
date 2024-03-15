@@ -78,6 +78,7 @@ def onCook(scriptOp):
     video_in = scriptOp.inputs[0]
     # By default, the image is flipped up. We flip it early
     image = video_in.numpyArray(delayed=True, writable=False)
+    image = cv2.flip(image, 0)
 
     if image is None:
         return

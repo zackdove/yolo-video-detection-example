@@ -16,7 +16,7 @@ def main(args):
                          args.image_width,
                          args.image_height,
                          args.num_channels,
-                         args.image_type) as det:
+                         args.image_type, "mps") as det:
 
         if os.path.exists(args.class_colormap):
             logger.info("Load class colors from '%s'", args.class_colormap)
@@ -56,7 +56,7 @@ if __name__ == "__main__":
                         help="A path to settings for logging")
     parser.add_argument("--class_colormap", type=str, default="class_colors.json",
                         help="A path to json with colors for each class")
-
+    parser.add_argument("-d", "--device", type=str, default="cpu")
     args = parser.parse_args()
     check_file(args.checkpoint_path)
     init_logging(log_config=args.log_config)
